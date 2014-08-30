@@ -1,3 +1,4 @@
+package com.github.sevntu.checkstyle.checks.coding.singularfield;
 
 class InputConvertFieldToLocalVariable11
 {

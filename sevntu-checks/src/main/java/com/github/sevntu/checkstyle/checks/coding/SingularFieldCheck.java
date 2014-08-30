@@ -3,13 +3,13 @@ package com.github.sevntu.checkstyle.checks.coding;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class ConvertFieldToLocalVariableCheck extends Check
+public class SingularFieldCheck extends Check
 {
 	/**
 	 * The key is pointing to the message text String in
-	 * "messages.properties file".This message used for common cases.
+	 * "messages.properties file". This message used for common cases.
 	 */
-	public static final String MSG_KEY = "convert.field.to.local.variable";
+	public static final String MSG_KEY = "singular.field";
 	
 	
 	@Override
