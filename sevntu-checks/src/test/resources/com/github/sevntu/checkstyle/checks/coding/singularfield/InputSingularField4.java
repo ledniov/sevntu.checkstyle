@@ -1,18 +1,32 @@
 package com.github.sevntu.checkstyle.checks.coding.singularfield;
 
-class InputConvertFieldToLocalVariable4
+class InputSingularField4
 {
-	private Random rnd; // ok, no warning here, variable is in use
-	 
-	public InputConvertFieldToLocalVariable4() {
-		rnd = new Random();
-	}
+	private int x; // warn, saves result and then returns it
+	private Integer obj = new Integer(3); // ok, self-instantiation (performance optimization, if getTaxRate called a lot of times)
+	private int sum; // ok, used to accumulate result
+	public int y; // ok, skip public
+
+	int bar(int y) {
+		if (y == 5) {
+			x = y + 5; 
+		}
  
-	public int randomHour() {
-		return rnd.nextInt(23);
-	}	
- 
-	public int rndMinute() {
-		return rnd.nextInt(59);
+		return x;
 	}
+	
+	public int foo(int y) {
+		sum = sum + y;
+		return sum;
+	}
+    
+    int norf(int z) {
+        y = z + 5;
+        return y;
+    }
+	
+	public Integer getTaxRate() {
+		return obj + 10;
+	}
+
 }

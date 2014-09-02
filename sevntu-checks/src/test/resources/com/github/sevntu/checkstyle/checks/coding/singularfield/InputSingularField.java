@@ -1,6 +1,6 @@
 package com.github.sevntu.checkstyle.checks.coding.singularfield;
 
-public class InputConvertFieldToLocalVariable
+public class InputSingularField
 {
 	private int result; // warning here
 	

@@ -1,27 +1,60 @@
 package com.github.sevntu.checkstyle.checks.coding.singularfield;
 
-class InputConvertFieldToLocalVariable5
+import java.util.Map;
+import java.util.HashMap;
+
+class InputSingularField5 extends Object
 {
-	private static final String FOO = "foo"; // ok, private constant
-	public static final String BAR = "bar"; // ok, public is ignored
- 
-	private Object test; // ok, created by lazy initialization on first getter call
-	private Bla manager; // ok, created in c-tor (caching first class instantiation)
- 
-	public InputConvertFieldToLocalVariable5() {
-		manager = BlaFactory.getBlaBlaManager();
-	}
- 
-	public void someMethod() {
-		return manager.create(FOO);
+	private Map<Object, Object> okMap = new HashMap<Object, Object>(); // ok, used twice
+	private Map<Object, Object> okMap2; // ok, used twice (same as above but created in c-tor)
+	private Map<Object, Object> warnMap; // warning here, can be replaced with local variable
+
+	InputSingularField5() {
+		okMap2 = new HashMap<Object, Object>();
 	}
 	
-	public Object lazyTest() {
-		if(test == null) {
-			test = new Object();
-		}
-		
-		return test;
+ 	private boolean okMethod(Object o) {
+		if(super.equals(o)) {
+			if(okMap.get(o) != null) {
+				return false;
+			} 
+ 
+			okMap.put(o,o); 
+		} 
+ 
+		return true;
 	}
-	
+ 
+ 	private boolean okMethod2(Object o) {
+		if(super.equals(o)) {
+			if(okMap2.get(o) != null) {
+				return false;
+			} 
+ 
+			okMap2.put(o,o); 
+		} 
+ 
+		return true;
+	}
+ 	
+ 	private boolean warnMethod(Object o) {
+		if(super.equals(o)) {
+			warnMap = getSomeMap();
+			if(warnMap.get(o) != null) {
+				return false;
+			} 
+ 
+			warnMap.put(o,o); 
+		} 
+ 
+		return true;
+ 		
+ 	}
+
+ 	private Map<Object, Object> getSomeMap() {
+ 		Map<Object, Object> someData = new HashMap<Object, Object>();
+ 		// extracting data from different places
+ 		return someData;
+ 	}
+ 	
 }

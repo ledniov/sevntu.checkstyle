@@ -1,10 +1,27 @@
 package com.github.sevntu.checkstyle.checks.coding.singularfield;
 
-class InputConvertFieldToLocalVariable9
+class InputSingularField9
 {
-	private Integer x = new Integer(3); // ok, self-instantiation (performance optimization, if getTaxRate called a lot of times)
- 
-	public Integer getTaxRate() {
-		return x + 10;
+	private Person person = new Person(); // ok, setting value from constructor
+	
+	public InputSingularField9(String name) {
+		person.setName(name);
+	}
+}
+
+class Person
+{
+	private String name;
+
+	public Person() {
+		
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 }

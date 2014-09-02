@@ -1,6 +1,6 @@
 package com.github.sevntu.checkstyle.checks.coding.singularfield;
 
-class InputConvertFieldToLocalVariable13
+class InputSingularField8
 {
 	private class Bar {
 		private int bar; // ok, used in outer class
